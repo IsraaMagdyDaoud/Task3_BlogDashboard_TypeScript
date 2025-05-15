@@ -1,0 +1,35 @@
+.postsContainer {
+  padding: 20px;
+}
+
+.pageTitle {
+  margin-bottom: 20px;
+  color: #213e69;
+}
+
+.postsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+  font-size: 1.2rem;
+  color: #7f8c8d;
+}
+
+.error {
+  padding: 20px;
+  background-color: #f8d7da;
+  color: #721c24;
+  border-radius: 4px;
+}
+
+.noPosts {
+  text-align: center;
+  padding: 40px;
+  color: #7f8c8d;
+}

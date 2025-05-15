@@ -1,0 +1,97 @@
+.dashboardContainer {
+  padding: 20px;
+}
+
+.pageTitle {
+  margin-bottom: 20px;
+  color: #253d69;
+}
+
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 30px;
+}
+
+.userSection {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+.Info {
+  color: #253d69;
+  font-size: 2rem;
+}
+.statsSection {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+.statsSection h2 {
+  color: #253d69;
+  font-size: 2rem;
+}
+
+.statCard h3 {
+  color: #1f1f23;
+}
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.statCard {
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  padding: 15px;
+  text-align: center;
+}
+
+.statValue {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #253d69;
+  margin: 10px 0 0;
+}
+
+.recentTitle {
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.recentPosts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.recentPost {
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  padding: 15px;
+}
+
+.recentPost h4 {
+  margin: 0 0 5px;
+}
+
+.recentPost p {
+  margin: 5px 0;
+  color: #7f8c8d;
+}
+
+.date {
+  font-size: 0.85rem;
+  color: #95a5a6;
+}
+
+@media (max-width: 768px) {
+  .dashboardGrid {
+    grid-template-columns: 1fr;
+  }
+}

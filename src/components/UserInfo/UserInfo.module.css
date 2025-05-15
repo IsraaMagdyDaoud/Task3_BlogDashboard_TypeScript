@@ -1,0 +1,52 @@
+.userInfoContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.userDetails {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.userName {
+  margin: 0 0 5px;
+  color: #1f1f23;
+  font-size: 3rem;
+}
+
+.userEmail {
+  margin: 0 0 10px;
+  color: #7f8c8d;
+}
+
+.joinDate {
+  font-size: 0.9rem;
+  color: #95a5a6;
+}
+
+.userActions {
+  width: 100%;
+}
+
+.editProfileButton {
+  width: 100%;
+  background-color: #ecf0f1;
+  color: #2c3e50;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.editProfileButton:hover {
+  background-color: #d5dbdb;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: #7f8c8d;
+}

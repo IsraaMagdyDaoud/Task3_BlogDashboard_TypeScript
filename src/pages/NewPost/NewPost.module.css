@@ -1,0 +1,10 @@
+.newPostContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.pageTitle {
+  margin-bottom: 20px;
+  color: #213e69;
+}
