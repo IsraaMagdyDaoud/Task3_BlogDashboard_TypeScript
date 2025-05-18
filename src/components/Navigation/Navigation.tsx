@@ -4,11 +4,25 @@ import styles from "./Navigation.module.css";
 import logo from "../../assets/logo.jpg";
 import { useAppSelector, useAppDispatch } from "../../redux/store";
 
+/**
+ * Navigation component - Displays the main site navigation including links,
+ * logo, user info, and sign-out functionality.
+ *
+ * @component
+ * @returns {JSX.Element} A responsive navigation bar
+ */
 export default function Navigation() {
   const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  /**
+   * Handles user sign-out by dispatching Redux thunk and redirecting to login.
+   *
+   * @async
+   * @function handleSignOut
+   * @returns {Promise<void>}
+   */
   const handleSignOut = async (): Promise<void> => {
     try {
       await dispatch(signOut()).unwrap();

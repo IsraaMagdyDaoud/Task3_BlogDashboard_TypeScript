@@ -1,16 +1,40 @@
 import styles from "./Pagination.module.css";
 import { PaginationProps, PageItem } from "../../types";
 
+/**
+ * Pagination component - Displays navigation controls for paginated content.
+ *
+ * @component
+ * @param {PaginationProps} props - Component props
+ * @param {number} props.currentPage - The currently selected page number
+ * @param {number} props.totalPages - Total number of available pages
+ * @param {Function} props.onPageChange - Callback to handle page changes
+ * @returns {JSX.Element }
+ */
+
 export default function Pagination({
   currentPage,
   totalPages,
   onPageChange,
 }: PaginationProps) {
+  /**
+   * Generates a list of page buttons with ellipses where appropriate.
+   *
+   * Always includes:
+   * - First page (1)
+   * - Last page (totalPages)
+   * - Up to 3 pages surrounding the currentPage
+   * - Ellipses (...) where page ranges are skipped
+   *
+   * @returns {PageItem[]} An array of page items including numbers and ellipses
+   */
   const getPageNumbersWithIds = (): PageItem[] => {
     const pageItems: PageItem[] = [];
 
+    // Always show first page
     pageItems.push({ type: "page", value: 1, id: "first" });
 
+    // Determine middle page range (around current page)
     let rangeStart = Math.max(2, currentPage - 1);
     let rangeEnd = Math.min(totalPages - 1, currentPage + 1);
 
@@ -18,14 +42,17 @@ export default function Pagination({
       pageItems.push({ type: "ellipsis", id: "ellipsis-1" });
     }
 
+    // Add middle page numbers
     for (let i = rangeStart; i <= rangeEnd; i++) {
       pageItems.push({ type: "page", value: i, id: `middle-${i}` });
     }
 
+    // Add right ellipsis if there's a gap
     if (rangeEnd < totalPages - 1) {
       pageItems.push({ type: "ellipsis", id: "ellipsis-2" });
     }
 
+    // Always show last page if more than one page exists
     if (totalPages > 1) {
       pageItems.push({ type: "page", value: totalPages, id: "last" });
     }
@@ -33,6 +60,7 @@ export default function Pagination({
     return pageItems;
   };
 
+  // Don't render pagination if only one page
   if (totalPages <= 1) return null;
 
   return (

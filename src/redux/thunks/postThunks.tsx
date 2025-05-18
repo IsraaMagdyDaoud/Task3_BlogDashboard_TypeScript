@@ -16,6 +16,14 @@ import {
 } from "firebase/firestore";
 import type { Post, PostData, UpdatedPostParams } from "types";
 
+/**
+ * Async thunk to fetch posts from Firestore.
+ * Optionally filters posts by a specific user ID.
+ *
+ * @param {string | undefined} userId - The ID of the user whose posts to fetch. If undefined, fetch all posts.
+ * @returns {Promise<Post[]>} Array of posts.
+ * @throws Throws an error if the Firestore query fails.
+ */
 export const fetchPosts = createAsyncThunk<Post[], string | undefined>(
   "posts/fetchPosts",
   async (userId) => {
@@ -43,6 +51,14 @@ export const fetchPosts = createAsyncThunk<Post[], string | undefined>(
   }
 );
 
+/**
+ * Async thunk to create a new post in Firestore.
+ * Adds timestamps for createdAt and updatedAt using serverTimestamp.
+ *
+ * @param {PostData} postData - Data for the new post.
+ * @returns {Promise<Post>} The created post including Firestore document ID.
+ * @throws Throws an error if adding the post to Firestore fails.
+ */
 export const createPost = createAsyncThunk<Post, PostData>(
   "posts/createPost",
   async (postData) => {
@@ -62,7 +78,13 @@ export const createPost = createAsyncThunk<Post, PostData>(
     }
   }
 );
-
+/**
+ * Async thunk to delete a post by its ID.
+ *
+ * @param {string} postId - The Firestore document ID of the post to delete.
+ * @returns {Promise<string>} The deleted post ID.
+ * @throws Throws an error if deleting the post from Firestore fails.
+ */
 export const deletePost = createAsyncThunk<string, string>(
   "posts/deletePost",
   async (postId) => {
@@ -77,6 +99,16 @@ export const deletePost = createAsyncThunk<string, string>(
   }
 );
 
+/**
+ * Async thunk to update an existing post by its ID.
+ * Updates timestamps and post status based on `publish` flag.
+ *
+ * @param {UpdatedPostParams} params - Object containing postId and postData to update.
+ * @param {string} params.postId - The Firestore document ID of the post to update.
+ * @param {Partial<PostData>} params.postData - The data fields to update.
+ * @returns {Promise<Post>} The updated post including Firestore document ID.
+ * @rejectValue {string} Returns error message if update fails.
+ */
 export const updatePost = createAsyncThunk<
   Post,
   UpdatedPostParams,

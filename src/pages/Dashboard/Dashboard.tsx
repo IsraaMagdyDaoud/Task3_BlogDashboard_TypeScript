@@ -1,3 +1,7 @@
+/**
+ * @fileoverview Dsshboard page that displays user profile information and blog post
+ * Fetches and display user posts, and render user information
+ */
 import { useEffect } from "react";
 import { fetchPosts } from "../../redux/thunks/postThunks";
 import { updateUserStats } from "../../redux/slices/userSlice";
@@ -6,18 +10,39 @@ import styles from "./Dashboard.module.css";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { Post, UserProfile, UserStats } from "../../types";
 
+/**
+ *
+ * @returns {JSX.Element} The Dashboard component UI
+ */
 export default function Dashboard() {
   const dispatch = useAppDispatch();
+  /**@type {Post[]} Array of user's blog posts */
   const { posts } = useAppSelector((state) => state.posts);
+  /**@type {UserStats}  */
   const { userStats } = useAppSelector((state) => state.user);
   const { user } = useAppSelector((state) => state.auth);
 
+  /**
+   * Effect hook to fetch user posts when component mounts or user changes
+   *
+   * @effect
+   * @dependency {Function} dispatch Redux dispatch function
+   * @dependency {Object} user the current user
+   */
   useEffect(() => {
     if (user) {
       dispatch(fetchPosts(user.uid));
     }
   }, [dispatch, user]);
 
+  /**
+   * Effect hook to calculate and update user pstatistics based in posts
+   * Counts total,published, and draft posts
+   *
+   * @effect
+   * @dependency {Post[]} posts The user's blog posts
+   * @dependency {Function} dispatch Redux dispatch function
+   */
   useEffect(() => {
     if (posts.length > 0) {
       const publishedPosts = posts.filter(
@@ -26,6 +51,8 @@ export default function Dashboard() {
       const draftPosts = posts.filter(
         (post: Post) => post.status === "draft"
       ).length;
+
+      /**@type {UserStats} */
 
       const stats: UserStats = {
         totalPosts: posts.length,
@@ -36,7 +63,11 @@ export default function Dashboard() {
       dispatch(updateUserStats(stats));
     }
   }, [posts, dispatch]);
-
+  /**
+   * Creates a UserProfile object from the authaenticated user data
+   *
+   * @type {UserProfile|null} The userProfile or null if no user
+   */
   const userProfile: UserProfile | null = user
     ? {
         id: user.uid,

@@ -4,6 +4,15 @@ import { UserProfile } from "../../types";
 interface UserInfoProps {
   user: UserProfile | null;
 }
+
+/**
+ * UserInfo component - Displays a user's profile information including
+ * name, email, and join date. Shows a loading message if the user data is not available.
+ *
+ * @component
+ * @param {UserInfoProps} props - Component props
+ * @returns {JSX.Element} Rendered user info or loading message
+ */
 export default function UserInfo({ user }: UserInfoProps) {
   if (!user) {
     return <div className={styles.loading}>Loading user information...</div>;

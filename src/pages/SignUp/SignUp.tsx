@@ -5,7 +5,16 @@ import styles from "./SignUp.module.css";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { SignUpFormData } from "types";
 
+/**
+ * SignUp component - Handles user registration including form validation,
+ * error handling, and user redirection upon success.
+ *
+ * @returns {JSX.Element}
+ */
 export default function SignUp() {
+  /**
+   * Stores the form input values
+   */
   const [formData, setFormData] = useState<SignUpFormData>({
     email: "",
     password: "",
@@ -17,12 +26,19 @@ export default function SignUp() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  /**
+   * Redirect user to dashboard if already logged in
+   */
   useEffect(() => {
     if (user) {
       navigate("/dashboard");
     }
   }, [user, navigate]);
 
+  /**
+   * Handles input field changes and updates formData state
+   * @param {ChangeEvent<HTMLInputElement>} e - The change event from input
+   */
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
     setFormData({
@@ -31,6 +47,10 @@ export default function SignUp() {
     });
   };
 
+  /**
+   * Validates the form input fields
+   * @returns {boolean} True if the form is valid, false otherwise
+   */
   const validateForm = (): boolean => {
     if (!formData.email.endsWith(".com")) {
       setValidationError("Email not valid must end with .com ");
@@ -49,6 +69,10 @@ export default function SignUp() {
     return true;
   };
 
+  /**
+   * Handles form submission and dispatches the signUp action
+   * @param {FormEvent<HTMLFormElement>} e - Form submission event
+   */
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     setValidationError("");

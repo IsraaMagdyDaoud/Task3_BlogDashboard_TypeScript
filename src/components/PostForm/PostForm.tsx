@@ -5,6 +5,16 @@ import { PostData, FormError, PostFormProps } from "../../types";
 interface FormData extends PostData {
   publish: boolean;
 }
+
+/**
+ * PostForm component - Renders a form for creating or editing a blog post.
+ *
+ * @component
+ * @param {PostFormProps} props - Component props
+ * @param {Function} props.onSubmit - Callback to handle form submission
+ * @param {PostData} [props.initialData] - Optional initial data for editing a post
+ * @returns {JSX.Element} Rendered form element
+ */
 export default function PostForm({
   onSubmit,
   initialData = {},
@@ -18,6 +28,11 @@ export default function PostForm({
 
   const [errors, setErrors] = useState<FormError>({});
 
+  /**
+   * Handle form input changes and update local state.
+   *
+   * @param {ChangeEvent<HTMLInputElement | HTMLTextAreaElement>} e - The change event
+   */
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -37,6 +52,11 @@ export default function PostForm({
     }
   };
 
+  /**
+   * Validate the form fields.
+   *
+   * @returns {boolean} Whether the form is valid
+   */
   const validateForm = (): boolean => {
     const newErrors: FormError = {};
 
@@ -52,6 +72,11 @@ export default function PostForm({
     return Object.keys(newErrors).length === 0;
   };
 
+  /**
+   * Handle form submission.
+   *
+   * @param {FormEvent<HTMLFormElement>} e - The form submit event
+   */
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
