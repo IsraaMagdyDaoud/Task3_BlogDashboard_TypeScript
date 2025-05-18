@@ -66,12 +66,12 @@ export default function Dashboard() {
               <p className={styles.statValue}>{userStats.totalPosts}</p>
             </div>
 
-            <div className={styles.statCard}>
+            <div className={styles.statCard} data-testid="published-stst">
               <h3>Published</h3>
               <p className={styles.statValue}>{userStats.publishedPosts}</p>
             </div>
 
-            <div className={styles.statCard}>
+            <div className={styles.statCard} data-testid="draft-stst">
               <h3>Drafts</h3>
               <p className={styles.statValue}>{userStats.draftPosts}</p>
             </div>

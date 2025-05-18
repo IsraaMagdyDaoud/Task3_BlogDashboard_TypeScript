@@ -7,7 +7,7 @@ import {
 } from "../thunks/postThunks";
 import type { PostsState, Post } from "types";
 
-const initialState: PostsState = {
+export const initialState: PostsState = {
   posts: [],
   status: "idle",
   error: null,
